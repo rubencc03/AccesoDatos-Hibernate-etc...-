@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 dic. 2021 15:55:46 by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="paquete.Affiliations" table="affiliations" catalog="starwars" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="affiliation" type="string">
+            <column name="affiliation" />
+        </property>
+        <set name="characterses" table="character_affiliations" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="id_affiliation" not-null="true" />
+            </key>
+            <many-to-many entity-name="paquete.Characters">
+                <column name="id_character" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

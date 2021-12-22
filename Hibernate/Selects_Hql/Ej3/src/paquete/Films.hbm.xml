@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 dic. 2021 15:55:46 by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="paquete.Films" table="films" catalog="starwars" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="episode" type="string">
+            <column name="episode" length="12" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" length="30" />
+        </property>
+        <set name="characterses" table="character_films" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="id_film" not-null="true" />
+            </key>
+            <many-to-many entity-name="paquete.Characters">
+                <column name="id_character" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="deathses" table="deaths" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_film" />
+            </key>
+            <one-to-many class="paquete.Deaths" />
+        </set>
+    </class>
+</hibernate-mapping>

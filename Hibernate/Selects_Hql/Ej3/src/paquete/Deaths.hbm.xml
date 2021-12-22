@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 dic. 2021 15:55:46 by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="paquete.Deaths" table="deaths" catalog="starwars" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="charactersByIdKiller" class="paquete.Characters" fetch="select">
+            <column name="id_killer" />
+        </many-to-one>
+        <many-to-one name="charactersByIdCharacter" class="paquete.Characters" fetch="select">
+            <column name="id_character" />
+        </many-to-one>
+        <many-to-one name="films" class="paquete.Films" fetch="select">
+            <column name="id_film" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

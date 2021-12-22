@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 dic. 2021 15:55:46 by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="paquete.Planets" table="planets" catalog="starwars" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="65535" />
+        </property>
+        <property name="rotationPeriod" type="java.lang.Integer">
+            <column name="rotation_period" />
+        </property>
+        <property name="orbitalPeriod" type="java.lang.Integer">
+            <column name="orbital_period" />
+        </property>
+        <property name="diameter" type="java.lang.Integer">
+            <column name="diameter" />
+        </property>
+        <property name="climate" type="string">
+            <column name="climate" length="65535" />
+        </property>
+        <property name="gravity" type="string">
+            <column name="gravity" length="65535" />
+        </property>
+        <property name="terrain" type="string">
+            <column name="terrain" length="65535" />
+        </property>
+        <property name="surfaceWater" type="string">
+            <column name="surface_water" length="65535" />
+        </property>
+        <property name="population" type="java.lang.Long">
+            <column name="population" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="created_date" length="19" not-null="true" />
+        </property>
+        <property name="updatedDate" type="timestamp">
+            <column name="updated_date" length="19" not-null="true" />
+        </property>
+        <property name="url" type="string">
+            <column name="url" length="65535" />
+        </property>
+        <set name="characterses" table="characters" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="planet_id" not-null="true" />
+            </key>
+            <one-to-many class="paquete.Characters" />
+        </set>
+    </class>
+</hibernate-mapping>
